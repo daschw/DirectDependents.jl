@@ -2,5 +2,5 @@ using DirectDependents
 using Test
 
 @testset "DirectDependents.jl" begin
-    # Write your own tests here.
+    @test !isempty(direct_dependents("RecipesBase"))
 end
