@@ -5,7 +5,7 @@ export direct_dependents
 import Pkg
 
 const REGISTRY_PATH = joinpath(homedir(), ".julia", "registries", "General")
-const registered_packages = filter!(
+const REGISTERED_PACKAGES = filter!(
     d -> d ∉ ("julia", ".DS_Store"),
     collect(Iterators.flatten(readdir.(joinpath.(REGISTRY_PATH, string.('A':'Z')))))
 )
@@ -25,8 +25,8 @@ end
 """
     direct_dependents(pkg)
 
-Get a list of all registered_packages depending on `pkg`.
+Get a list of all registered packages depending on `pkg`.
 """
-direct_dependents(pkg) = filter(p -> pkg ∈ direct_dependencies(p), registered_packages)
+direct_dependents(pkg) = filter(p -> pkg ∈ direct_dependencies(p), REGISTERED_PACKAGES)
 
 end # module
